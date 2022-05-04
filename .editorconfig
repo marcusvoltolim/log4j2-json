@@ -1,0 +1,24 @@
+# @formatter:off
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 180
+
+[*.{xml,yml,yaml,tf}]
+indent_size = 2
+
+[*.{yml,yaml}]
+ij_yaml_spaces_within_brackets = false
+
+[*.groovy]
+ij_groovy_names_count_to_use_import_on_demand = 10
+ij_groovy_class_count_to_use_import_on_demand = 10
+ij_groovy_if_brace_force = always
+ij_groovy_space_before_if_parentheses = true
+ij_groovy_space_before_if_left_brace = true
