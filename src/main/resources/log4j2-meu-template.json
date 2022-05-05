@@ -1,4 +1,8 @@
 {
+    "idx": {
+        "$resolver": "counter",
+        "start": 1
+    },
     "log_date": {
         "$resolver": "timestamp",
         "pattern": {
@@ -15,6 +19,14 @@
     "level": {
         "$resolver": "level",
         "field": "name"
+    },
+    "level_lower": {
+        "$resolver": "caseConverter",
+        "case": "lower",
+        "input": {
+            "$resolver": "level",
+            "field": "name"
+        }
     },
     "level_code": {
         "$resolver": "level",

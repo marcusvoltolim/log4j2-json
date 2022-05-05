@@ -63,7 +63,13 @@ Na propriedade `eventTemplateUri: classpath:EcsLayout.json` definimos o template
 Tem vários templates disponíveis: `EcsLayout, LogstashJsonEventLayoutV1, GelfLayout, GcpLayout, JsonLayout`.
 Apenas com essa configuração já temos o log impresso no formato JSON:
 
-![img.png](docs/log-ecsl-ayout.png)
+* Log Padrão Spring
+  ![img.png](docs/log-padrao.png)
+
+---
+
+* Log Json com EcsLayout
+  ![img.png](docs/log-ecs-layout.png)
 
 ---
 
@@ -83,10 +89,16 @@ Apenas com essa configuração já temos o log impresso no formato JSON:
 Podemos criar um JsonTemplateLayout customizado [resources/log4j2-meu-template.json](src/main/resources/log4j2-meu-template.json) e
 alterar no arquivo de configuração [src/main/resources/log4j2.yaml](src/main/resources/log4j2.yaml) para usá-lo: `eventTemplateUri: classpath:log4j2-meu-template.json`
 
+Existem vários *resolvers* disponíveis: `counter, timestamp, level, caseConverter, message, thread, logger, source, exception, mdc, ndc`
+
 #### Estrutura do JsonTemplateLayout customizado
 
 ```json
 {
+    "idx": {
+        "$resolver": "counter",
+        "start": 1
+    },
     "log_date": {
         "$resolver": "timestamp",
         "pattern": {
@@ -103,6 +115,14 @@ alterar no arquivo de configuração [src/main/resources/log4j2.yaml](src/main/r
     "level": {
         "$resolver": "level",
         "field": "name"
+    },
+    "level_lower": {
+        "$resolver": "caseConverter",
+        "case": "lower",
+        "input": {
+            "$resolver": "level",
+            "field": "name"
+        }
     },
     "level_code": {
         "$resolver": "level",
@@ -149,6 +169,7 @@ alterar no arquivo de configuração [src/main/resources/log4j2.yaml](src/main/r
         }
     }
 }
+
 ```
 
 #### Resultado dos logs com JsonTemplateLayout customizado:
