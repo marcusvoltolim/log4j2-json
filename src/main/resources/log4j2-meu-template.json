@@ -1,0 +1,63 @@
+{
+    "log_date": {
+        "$resolver": "timestamp",
+        "pattern": {
+            "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "timeZone": "UTC"
+        }
+    },
+    "nanos": {
+        "$resolver": "timestamp",
+        "epoch": {
+            "unit": "nanos"
+        }
+    },
+    "level": {
+        "$resolver": "level",
+        "field": "name"
+    },
+    "level_code": {
+        "$resolver": "level",
+        "field": "severity",
+        "severity": {
+            "field": "code"
+        }
+    },
+    "message": {
+        "$resolver": "message",
+        "stringified": true
+    },
+    "thread_name": {
+        "$resolver": "thread",
+        "field": "name"
+    },
+    "logger_name": {
+        "$resolver": "logger",
+        "field": "name"
+    },
+    "class": {
+        "$resolver": "source",
+        "field": "className"
+    },
+    "resource": {
+        "service.name": "log4j2-json",
+        "java.version": "${sys:java.version}"
+    },
+    "exception": {
+        "type": {
+            "$resolver": "exception",
+            "field": "className"
+        },
+        "message": {
+            "$resolver": "exception",
+            "field": "message"
+        },
+        "stacktrace": {
+            "$resolver": "exception",
+            "field": "stackTrace",
+            "stackTrace": {
+                "stringified": true
+            }
+        }
+    }
+}

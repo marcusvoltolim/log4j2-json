@@ -1,0 +1,15 @@
+Configuration:
+  status: warn
+  appenders:
+    Console:
+      - name: JSON_LAYOUT_APPENDER
+        target: SYSTEM_OUT
+        follow: true
+        JsonTemplateLayout:
+          eventTemplateUri: classpath:log4j2-meu-template.json
+  Loggers:
+    Root:
+      level: info
+      additivity: false
+      AppenderRef:
+        ref: JSON_LAYOUT_APPENDER
